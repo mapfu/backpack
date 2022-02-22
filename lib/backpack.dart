@@ -37,7 +37,7 @@ void ll2() {
 }
 
 // timer
-Timer timerPlus(
+Timer timerNow(
   Duration duration,
   void Function(Timer timer) callback, {
   bool fireNow = false,
