@@ -48,7 +48,7 @@ Timer timerNow(Duration duration,
   return timer;
 }
 
-void wait(Duration dur) async {
+Future wait(Duration dur) async {
   await Future.delayed(dur);
 }
 
