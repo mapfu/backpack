@@ -37,16 +37,19 @@ void ll2() {
 }
 
 // timer
-Timer timerNow(
-  Duration duration,
-  void Function(Timer timer) callback, {
-  bool fireNow = false,
-}) {
+Timer timerNow(Duration duration,
+    void Function(Timer timer) callback, {
+      bool fireNow = false,
+    }) {
   var timer = Timer.periodic(duration, callback);
   if (fireNow) {
     callback(timer);
   }
   return timer;
+}
+
+void wait(Duration dur) async {
+  await Future.delayed(dur);
 }
 
 // Con --------------------------------------------------------------------
@@ -118,7 +121,7 @@ class Con extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     // hide
-    if (!this.visible) return Container();
+    if (!visible) return Container();
 
     // padding
     EdgeInsets? pad;
@@ -166,7 +169,7 @@ class Con extends StatelessWidget {
         border: border ? Border.all(color: borderColor ?? white) : null,
         boxShadow: [
           if (shadow)
-            BoxShadow(
+            const BoxShadow(
               //offset: const Offset(3.0, 3.0),
               blurRadius: 5.0,
               spreadRadius: 0.0,
@@ -330,7 +333,7 @@ class Tex extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget retWidget;
 
-    var style = TextStyle();
+    var style = const TextStyle();
     if (size != null || color != null || bold) {
       style = TextStyle(
         fontSize: size,
