@@ -1,6 +1,7 @@
 library backpack;
 
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -50,6 +51,14 @@ Timer timerNow(Duration duration,
 
 Future wait(Duration dur) async {
   await Future.delayed(dur);
+}
+
+extension IterableSC<T> on Iterable<T> {
+  T pickOne([Random? random]) {
+    var list = toList();
+    list.shuffle(random);
+    return list.first;
+  }
 }
 
 // Con --------------------------------------------------------------------
