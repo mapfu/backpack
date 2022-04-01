@@ -38,10 +38,11 @@ void ll2() {
 }
 
 // timer
-Timer timerNow(Duration duration,
-    void Function(Timer timer) callback, {
-      bool fireNow = false,
-    }) {
+Timer timerNow(
+  Duration duration,
+  void Function(Timer timer) callback, {
+  bool fireNow = false,
+}) {
   var timer = Timer.periodic(duration, callback);
   if (fireNow) {
     callback(timer);
@@ -188,7 +189,7 @@ class Con extends StatelessWidget {
       );
     }
 
-    Widget ret = Container(
+    Widget returnWidget = Container(
       padding: pad,
       margin: marg,
       height: box ?? height,
@@ -199,15 +200,15 @@ class Con extends StatelessWidget {
     );
 
     if (onTap != null || onDoubleTap != null || onLongPress != null) {
-      ret = GestureDetector(
-        child: ret,
+      returnWidget = GestureDetector(
+        child: returnWidget,
         onTap: onTap,
         onDoubleTap: onDoubleTap,
         onLongPress: onLongPress,
       );
     }
 
-    return ret;
+    return returnWidget;
   }
 }
 
@@ -316,6 +317,8 @@ class Tex extends StatelessWidget {
   final bool italics;
   final double? width;
   final GestureTapCallback? onTap;
+  final GestureTapCallback? onDoubleTap;
+  final GestureTapCallback? onLongPress;
 
   const Tex(
     this.text, {
@@ -336,6 +339,8 @@ class Tex extends StatelessWidget {
     this.textScaleFactor,
     this.overflow,
     this.onTap,
+    this.onDoubleTap,
+    this.onLongPress,
   }) : super(key: key);
 
   @override
@@ -391,10 +396,12 @@ class Tex extends StatelessWidget {
       );
     }
 
-    if (onTap != null) {
+    if (onTap != null || onDoubleTap != null || onLongPress != null) {
       retWidget = GestureDetector(
-        onTap: onTap,
         child: retWidget,
+        onTap: onTap,
+        onDoubleTap: onDoubleTap,
+        onLongPress: onLongPress,
       );
     }
 
