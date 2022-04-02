@@ -60,6 +60,11 @@ extension IterableSC<T> on Iterable<T> {
     list.shuffle(random);
     return list.first;
   }
+
+  T testx() {
+    var list = toList();
+    return list.first;
+  }
 }
 
 // Con --------------------------------------------------------------------
