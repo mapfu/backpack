@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'dart:io';
 
 const white = Colors.white;
 const black = Colors.black;
@@ -52,6 +53,12 @@ Timer timerNow(
 
 Future wait(Duration dur) async {
   await Future.delayed(dur);
+}
+
+extension FileStuff on File {
+  String name() {
+    return path.split("/").last;
+  }
 }
 
 extension IterableSC<T> on Iterable<T> {
