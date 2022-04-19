@@ -7,14 +7,23 @@ import 'package:logger/logger.dart';
 import 'dart:io';
 
 const white = Colors.white;
+const wwhite = Colors.white;
 const black = Colors.black;
+const bblack = Colors.black;
 const purple = Colors.purple;
+const ppurple = Colors.purple;
 const green = Colors.green;
+const ggreen = Colors.green;
 const red = Colors.red;
+const rred = Colors.red;
 const blue = Colors.blue;
+const bblue = Colors.blue;
 const yellow = Colors.yellow;
+const yyellow = Colors.yellow;
 const grey = Colors.grey;
+const ggrey = Colors.grey;
 const trans = Colors.transparent;
+const ttrans = Colors.transparent;
 
 void ll(dynamic what) {
   final logger = Logger(
@@ -73,6 +82,45 @@ extension IterableSC<T> on Iterable<T> {
     return list.first;
   }
 }
+
+extension StringStuff on String {
+  toColor() {
+    var hexColor = this.replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    if (hexColor.length == 8) {
+      return Color(int.parse("0x$hexColor"));
+    }
+  }
+
+//num times(num other) => this * other;
+}
+
+// Col --------------------------------------------------------------------
+// class Col extends StatelessWidget {
+//   MainAxisAlignment maa;
+//   CrossAxisAlignment caa;
+//   final List[Widget?] children;
+//
+//   const Col({
+//     Key? key,
+//     this.maa = MainAxisAlignment.start,
+//     this.caa = CrossAxisAlignment.center,
+//
+//
+//
+//     this.children,
+//   }) : super(key: key)
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: maa,
+//       crossAxisAlignment: caa,
+//     );
+//   }
+// }
 
 // Con --------------------------------------------------------------------
 class Con extends StatelessWidget {
