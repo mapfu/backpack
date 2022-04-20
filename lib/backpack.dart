@@ -25,6 +25,13 @@ const ggrey = Colors.grey;
 const trans = Colors.transparent;
 const ttrans = Colors.transparent;
 
+const maaCenter = MainAxisAlignment.center;
+const maaStart = MainAxisAlignment.start;
+const maaEnd = MainAxisAlignment.end;
+const maaSpaceAround = MainAxisAlignment.spaceAround;
+const maaSpaceEvenly = MainAxisAlignment.spaceEvenly;
+const maaSpaceBetween = MainAxisAlignment.spaceBetween;
+
 void ll(dynamic what) {
   final logger = Logger(
     level: Level.debug,
@@ -93,8 +100,6 @@ extension StringStuff on String {
       return Color(int.parse("0x$hexColor"));
     }
   }
-
-//num times(num other) => this * other;
 }
 
 // Col --------------------------------------------------------------------
