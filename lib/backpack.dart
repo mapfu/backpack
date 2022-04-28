@@ -102,6 +102,19 @@ extension StringStuff on String {
   }
 }
 
+extension DateTimeExtension on DateTime {
+  TimeOfDay toTimeOfDay() {
+    return TimeOfDay(hour: hour, minute: minute);
+  }
+}
+
+extension TimeOfDayExtension on TimeOfDay {
+  DateTime toDateTime() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day, hour, minute);
+  }
+}
+
 // Col --------------------------------------------------------------------
 // class Col extends StatelessWidget {
 //   MainAxisAlignment maa;
