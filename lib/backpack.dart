@@ -167,10 +167,11 @@ class Con extends StatelessWidget {
   final double rbottomright;
 
   final bool border;
-  final double btop;
-  final double bright;
-  final double bleft;
-  final double bbottom;
+  final double bwidth;
+  final bool btop;
+  final bool bright;
+  final bool bleft;
+  final bool bbottom;
   final Color? borderColor;
 
   final bool visible;
@@ -202,10 +203,11 @@ class Con extends StatelessWidget {
     this.rbottomleft = 5,
     this.rbottomright = 5,
     this.border = false,
-    this.btop = 1,
-    this.bright = 1,
-    this.bleft = 1,
-    this.bbottom = 1,
+    this.bwidth = 1,
+    this.btop = true,
+    this.bright = true,
+    this.bleft = true,
+    this.bbottom = true,
     this.borderColor,
     this.visible = true,
     this.shadow = false,
@@ -266,10 +268,10 @@ class Con extends StatelessWidget {
         ),
         border: border
             ? Border(
-                top: BorderSide(width: btop, color: borderColor ?? white),
-                bottom: BorderSide(width: bbottom, color: borderColor ?? white),
-                left: BorderSide(width: bleft, color: borderColor ?? white),
-                right: BorderSide(width: bright, color: borderColor ?? white),
+                top: BorderSide(width: bwidth, color: red),
+                bottom: BorderSide(width: bwidth, color: borderColor ?? white),
+                left: BorderSide(width: bwidth, color: borderColor ?? white),
+                right: BorderSide(width: bwidth, color: borderColor ?? white),
               )
             : null,
         //border: border ? Border.all(color: borderColor ?? white) : null,
