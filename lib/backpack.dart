@@ -270,10 +270,18 @@ class Con extends StatelessWidget {
     Border? decBorder;
     if (border) {
       decBorder = Border(
-        top: BorderSide(width: bwidth, color: btop ? borderColor : trans),
-        bottom: BorderSide(width: bwidth, color: bbottom ? borderColor : trans),
-        left: BorderSide(width: bwidth, color: bleft ? borderColor : trans),
-        right: BorderSide(width: bwidth, color: bright ? borderColor : trans),
+        top: btop
+            ? BorderSide(width: bwidth, color: borderColor)
+            : const BorderSide(),
+        bottom: bbottom
+            ? BorderSide(width: bwidth, color: borderColor)
+            : const BorderSide(),
+        left: bleft
+            ? BorderSide(width: bwidth, color: borderColor)
+            : const BorderSide(),
+        right: bright
+            ? BorderSide(width: bwidth, color: borderColor)
+            : const BorderSide(),
       );
     }
 
