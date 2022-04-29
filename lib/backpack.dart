@@ -292,7 +292,7 @@ class Con extends StatelessWidget {
 
     // decoration
     BoxDecoration dec = BoxDecoration(
-      color: (rounded | border | shadow) ? null : color,
+      color: color,
       borderRadius: decRounded,
       border: decBorder,
       boxShadow: decShadow,
@@ -343,7 +343,7 @@ class Con extends StatelessWidget {
       margin: marg,
       height: box ?? height,
       width: box ?? width,
-      color: (rounded || shadow || border) ? null : color,
+      //color: (rounded || shadow || border) ? null : color,
       decoration: dec,
       child: child,
     );
