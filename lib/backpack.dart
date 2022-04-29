@@ -255,42 +255,88 @@ class Con extends StatelessWidget {
       );
     }
 
-    // decoration
-    BoxDecoration? dec;
-    if (rounded || shadow || border) {
-      dec = BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(rounded ? rtopleft : 0),
-          topRight: Radius.circular(rounded ? rtopright : 0),
-          bottomLeft: Radius.circular(rounded ? rbottomleft : 0),
-          bottomRight: Radius.circular(rounded ? rbottomright : 0),
-        ),
-        border: border
-            ? Border(
-                top: BorderSide(
-                    width: bwidth, color: btop ? borderColor : trans),
-                bottom: BorderSide(
-                    width: bwidth, color: bbottom ? borderColor : trans),
-                left: BorderSide(
-                    width: bwidth, color: bleft ? borderColor : trans),
-                right: BorderSide(
-                    width: bwidth, color: bright ? borderColor : trans),
-              )
-            : null,
-        //border: border ? Border.all(color: borderColor ?? white) : null,
-
-        boxShadow: [
-          if (shadow)
-            const BoxShadow(
-              //offset: const Offset(3.0, 3.0),
-              blurRadius: 5.0,
-              spreadRadius: 0.0,
-              color: Colors.black12,
-            ),
-        ],
+    // rounded
+    BorderRadius? decRounded;
+    if (rounded) {
+      decRounded = BorderRadius.only(
+        topLeft: Radius.circular(rtopleft),
+        topRight: Radius.circular(rtopright),
+        bottomLeft: Radius.circular(rbottomleft),
+        bottomRight: Radius.circular(rbottomright),
       );
     }
+
+    // border
+    Border? decBorder;
+    if (border) {
+      decBorder = Border(
+        top: BorderSide(width: bwidth, color: btop ? borderColor : trans),
+        bottom: BorderSide(width: bwidth, color: bbottom ? borderColor : trans),
+        left: BorderSide(width: bwidth, color: bleft ? borderColor : trans),
+        right: BorderSide(width: bwidth, color: bright ? borderColor : trans),
+      );
+    }
+
+    // shadow
+    List<BoxShadow>? decShadow;
+    if (shadow) {
+      decShadow = [
+        const BoxShadow(
+          //offset: const Offset(3.0, 3.0),
+          blurRadius: 5.0,
+          spreadRadius: 0.0,
+          color: Colors.black12,
+        )
+      ];
+    }
+
+    // decoration
+    BoxDecoration dec = BoxDecoration(
+      color: color,
+      borderRadius: decRounded,
+      border: decBorder,
+      boxShadow: decShadow,
+    );
+    // if (rounded) {
+    //   dec.borderRadius = BorderRadius.only(
+    // topLeft: Radius.circular(rounded ? rtopleft : 0),
+    // topRight: Radius.circular(rounded ? rtopright : 0),
+    // bottomLeft: Radius.circular(rounded ? rbottomleft : 0),
+    // bottomRight: Radius.circular(rounded ? rbottomright : 0),
+    // );
+    // }
+    //
+    //
+    // if (rounded || shadow || border) {
+    // dec = BoxDecoration(
+    // color: color,
+    // borderRadius: BorderRadius.only(
+    // topLeft: Radius.circular(rounded ? rtopleft : 0),
+    // topRight: Radius.circular(rounded ? rtopright : 0),
+    // bottomLeft: Radius.circular(rounded ? rbottomleft : 0),
+    // bottomRight: Radius.circular(rounded ? rbottomright : 0),
+    // ),
+    // border: border
+    // ? Border(
+    // top: BorderSide(width: bwidth, color: btop ? borderColor : trans),
+    // bottom: BorderSide(width: bwidth, color: bbottom ? borderColor : trans),
+    // left: BorderSide(width: bwidth, color: bleft ? borderColor : trans),
+    // right: BorderSide(width: bwidth, color: bright ? borderColor : trans),
+    // )
+    //     : null,
+    // //border: border ? Border.all(color: borderColor ?? white) : null,
+    //
+    // boxShadow: [
+    // if (shadow)
+    // const BoxShadow(
+    // //offset: const Offset(3.0, 3.0),
+    // blurRadius: 5.0,
+    // spreadRadius: 0.0,
+    // color: Colors.black12,
+    // ),
+    // ],
+    // );
+    // }
 
     Widget returnWidget = Container(
       padding: pad,
