@@ -165,8 +165,14 @@ class Con extends StatelessWidget {
   final double rtopright;
   final double rbottomleft;
   final double rbottomright;
+
   final bool border;
+  final double btop;
+  final double bright;
+  final double bleft;
+  final double bbottom;
   final Color? borderColor;
+
   final bool visible;
   final bool shadow;
   final GestureTapCallback? onTap;
@@ -196,6 +202,10 @@ class Con extends StatelessWidget {
     this.rbottomleft = 5,
     this.rbottomright = 5,
     this.border = false,
+    this.btop = 1,
+    this.bright = 1,
+    this.bleft = 1,
+    this.bbottom = 1,
     this.borderColor,
     this.visible = true,
     this.shadow = false,
@@ -254,7 +264,16 @@ class Con extends StatelessWidget {
           bottomLeft: Radius.circular(rounded ? rbottomleft : 0),
           bottomRight: Radius.circular(rounded ? rbottomright : 0),
         ),
-        border: border ? Border.all(color: borderColor ?? white) : null,
+        border: border
+            ? Border(
+                top: BorderSide(width: btop, color: borderColor ?? white),
+                bottom: BorderSide(width: bbottom, color: borderColor ?? white),
+                left: BorderSide(width: bleft, color: borderColor ?? white),
+                right: BorderSide(width: bright, color: borderColor ?? white),
+              )
+            : null,
+        //border: border ? Border.all(color: borderColor ?? white) : null,
+
         boxShadow: [
           if (shadow)
             const BoxShadow(
