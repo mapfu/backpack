@@ -181,7 +181,7 @@ class Con extends StatelessWidget {
   final GestureTapCallback? onLongPress;
   final Widget? child;
 
-  const Con({
+  const Conx({
     Key? key,
     this.color,
     this.ptop,
@@ -368,7 +368,6 @@ class Con extends StatelessWidget {
     return returnWidget;
   }
 }
-
 // Pad --------------------------------------------------------------------
 class Pad extends StatelessWidget {
   final double? ptop;
