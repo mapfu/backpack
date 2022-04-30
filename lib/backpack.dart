@@ -181,7 +181,7 @@ class Con extends StatelessWidget {
   final GestureTapCallback? onLongPress;
   final Widget? child;
 
-  const Conx({
+  const Con({
     Key? key,
     this.color,
     this.ptop,
