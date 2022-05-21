@@ -32,6 +32,12 @@ const maaSpaceAround = MainAxisAlignment.spaceAround;
 const maaSpaceEvenly = MainAxisAlignment.spaceEvenly;
 const maaSpaceBetween = MainAxisAlignment.spaceBetween;
 
+const caaCenter = CrossAxisAlignment.center;
+const caaStart = CrossAxisAlignment.start;
+const caaEnd = CrossAxisAlignment.end;
+const caaBaseline = CrossAxisAlignment.baseline;
+const caaStretch = CrossAxisAlignment.stretch;
+
 void ll(dynamic what) {
   final logger = Logger(
     level: Level.debug,
@@ -58,7 +64,7 @@ void ll2() {
 Timer timerNow(
   Duration duration,
   void Function(Timer timer) callback, {
-  bool fireNow = false,
+  bool fireNow = true,
 }) {
   var timer = Timer.periodic(duration, callback);
   if (fireNow) {
@@ -116,29 +122,95 @@ extension TimeOfDayExtension on TimeOfDay {
 }
 
 // Col --------------------------------------------------------------------
-// class Col extends StatelessWidget {
-//   MainAxisAlignment maa;
-//   CrossAxisAlignment caa;
-//   final List[Widget?] children;
-//
-//   const Col({
-//     Key? key,
-//     this.maa = MainAxisAlignment.start,
-//     this.caa = CrossAxisAlignment.center,
-//
-//
-//
-//     this.children,
-//   }) : super(key: key)
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: maa,
-//       crossAxisAlignment: caa,
-//     );
-//   }
-// }
+class Col extends StatelessWidget {
+  final List<Widget> children;
+
+  final MainAxisAlignment maa;
+  final CrossAxisAlignment caa;
+
+  final double? ptop;
+  final double? pbottom;
+  final double? pleft;
+  final double? pright;
+  final double? pall;
+
+  final double? mtop;
+  final double? mright;
+  final double? mbottom;
+  final double? mleft;
+  final double? mall;
+
+  final int? space;
+
+  const Col({
+    Key? key,
+    this.maa = maaStart,
+    this.caa = caaCenter,
+    this.ptop,
+    this.pright,
+    this.pbottom,
+    this.pleft,
+    this.pall,
+    this.mtop,
+    this.mright,
+    this.mbottom,
+    this.mleft,
+    this.mall,
+    this.space,
+    this.children = const [],
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // padding
+    EdgeInsets? pad;
+    if (pall != null) {
+      pad = EdgeInsets.all(pall!);
+    } else if (ptop != null ||
+        pbottom != null ||
+        pleft != null ||
+        pright != null) {
+      pad = EdgeInsets.only(
+        top: ptop ?? 0,
+        bottom: pbottom ?? 0,
+        left: pleft ?? 0,
+        right: pright ?? 0,
+      );
+    }
+
+    // margin
+    EdgeInsets? marg;
+    if (mall != null) {
+      marg = EdgeInsets.all(mall!);
+    } else if (mtop != null ||
+        mbottom != null ||
+        mleft != null ||
+        mright != null) {
+      marg = EdgeInsets.only(
+        top: mtop ?? 0,
+        bottom: mbottom ?? 0,
+        left: mleft ?? 0,
+        right: mright ?? 0,
+      );
+    }
+
+    var col = Column(
+      mainAxisAlignment: maa,
+      crossAxisAlignment: caa,
+      children: children,
+    );
+
+    if (pad != null || marg != null) {
+      return Container(
+        padding: pad,
+        margin: marg,
+        child: col,
+      );
+    }
+
+    return col;
+  }
+}
 
 // Con --------------------------------------------------------------------
 class Con extends StatelessWidget {
@@ -368,6 +440,7 @@ class Con extends StatelessWidget {
     return returnWidget;
   }
 }
+
 // Pad --------------------------------------------------------------------
 class Pad extends StatelessWidget {
   final double? ptop;
