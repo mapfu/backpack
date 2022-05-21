@@ -212,6 +212,97 @@ class Col extends StatelessWidget {
   }
 }
 
+// Ro --------------------------------------------------------------------
+class Ro extends StatelessWidget {
+  final List<Widget> children;
+
+  final MainAxisAlignment maa;
+  final CrossAxisAlignment caa;
+
+  final double? ptop;
+  final double? pbottom;
+  final double? pleft;
+  final double? pright;
+  final double? pall;
+
+  final double? mtop;
+  final double? mright;
+  final double? mbottom;
+  final double? mleft;
+  final double? mall;
+
+  final int? space;
+
+  const Ro({
+    Key? key,
+    this.maa = maaStart,
+    this.caa = caaCenter,
+    this.ptop,
+    this.pright,
+    this.pbottom,
+    this.pleft,
+    this.pall,
+    this.mtop,
+    this.mright,
+    this.mbottom,
+    this.mleft,
+    this.mall,
+    this.space,
+    this.children = const [],
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // padding
+    EdgeInsets? pad;
+    if (pall != null) {
+      pad = EdgeInsets.all(pall!);
+    } else if (ptop != null ||
+        pbottom != null ||
+        pleft != null ||
+        pright != null) {
+      pad = EdgeInsets.only(
+        top: ptop ?? 0,
+        bottom: pbottom ?? 0,
+        left: pleft ?? 0,
+        right: pright ?? 0,
+      );
+    }
+
+    // margin
+    EdgeInsets? marg;
+    if (mall != null) {
+      marg = EdgeInsets.all(mall!);
+    } else if (mtop != null ||
+        mbottom != null ||
+        mleft != null ||
+        mright != null) {
+      marg = EdgeInsets.only(
+        top: mtop ?? 0,
+        bottom: mbottom ?? 0,
+        left: mleft ?? 0,
+        right: mright ?? 0,
+      );
+    }
+
+    var row = Row(
+      mainAxisAlignment: maa,
+      crossAxisAlignment: caa,
+      children: children,
+    );
+
+    if (pad != null || marg != null) {
+      return Container(
+        padding: pad,
+        margin: marg,
+        child: row,
+      );
+    }
+
+    return row;
+  }
+}
+
 // Con --------------------------------------------------------------------
 class Con extends StatelessWidget {
   final Color? color;
