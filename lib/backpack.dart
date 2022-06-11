@@ -2,6 +2,7 @@ library backpack;
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'dart:io';
@@ -639,6 +640,7 @@ class Tex extends StatelessWidget {
   final GestureTapCallback? onTap;
   final GestureTapCallback? onDoubleTap;
   final GestureTapCallback? onLongPress;
+  final bool monospaced;
 
   const Tex(
     this.text, {
@@ -661,6 +663,7 @@ class Tex extends StatelessWidget {
     this.onTap,
     this.onDoubleTap,
     this.onLongPress,
+    this.monospaced = false,
   }) : super(key: key);
 
   @override
@@ -668,15 +671,15 @@ class Tex extends StatelessWidget {
     Widget retWidget;
 
     var style = const TextStyle();
-    if (size != null || color != null || bold) {
+    if (size != null || color != null || bold || monospaced) {
       style = TextStyle(
-        fontSize: size,
-        fontFamily: fontFamily,
-        color: color,
-        backgroundColor: backgroundColor,
-        fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-        fontStyle: italics ? FontStyle.italic : FontStyle.normal,
-      );
+          fontSize: size,
+          fontFamily: fontFamily,
+          color: color,
+          backgroundColor: backgroundColor,
+          fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+          fontStyle: italics ? FontStyle.italic : FontStyle.normal,
+          fontFeatures: [if (monospaced) const FontFeature.tabularFigures()]);
     }
 
     retWidget = Text(
