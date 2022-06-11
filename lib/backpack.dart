@@ -641,6 +641,7 @@ class Tex extends StatelessWidget {
   final GestureTapCallback? onDoubleTap;
   final GestureTapCallback? onLongPress;
   final bool monospaced;
+  final TextAlign? alignment;
 
   const Tex(
     this.text, {
@@ -664,6 +665,7 @@ class Tex extends StatelessWidget {
     this.onDoubleTap,
     this.onLongPress,
     this.monospaced = false,
+    this.alignment,
   }) : super(key: key);
 
   @override
@@ -688,6 +690,7 @@ class Tex extends StatelessWidget {
       textScaleFactor: textScaleFactor,
       overflow: overflow,
       style: style,
+      textAlign: alignment,
     );
 
     // padding
