@@ -753,6 +753,6 @@ class Debounce {
   }
 }
 
-int random({int min = 0, int max = 1000000}) {
+int random(int min, int max) {
   return min + Random().nextInt(max - min);
 }
