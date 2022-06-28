@@ -752,3 +752,7 @@ class Debounce {
     _timer?.cancel();
   }
 }
+
+int random({int min = 0, int max = 1000000}) {
+  return min + Random().nextInt(max - min);
+}
